@@ -2,7 +2,6 @@ import { View, Text, ScrollView, Image, TouchableOpacity, ImageSourcePropType, A
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import icons from '@/constants/icons'
-import images from '@/constants/images'
 import { settings } from '@/constants/data'
 import { useGlobalContext } from '@/lib/global-provider'
 import { logout } from '@/lib/appwrite'
@@ -30,7 +29,7 @@ const SettingsItem = ({ title, onPress,icon,textStyle, showArrow = true }:Settin
 const Profile = () => {
 
   const {user, refetch} = useGlobalContext()
-  
+
   const handleLogout = async () => {
     const result = await logout()
     if(result) {
