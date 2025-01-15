@@ -84,7 +84,7 @@ export const getLatestProperties = async () => {
         return []
     }
 }
-export const getProperties = async ({filter, query, limit}:{filter:string, query:string, limit:number}) => {
+export const getProperties = async ({filter, query, limit}:{filter:string, query:string, limit?:number}) => {
     try {
         const buildQuery = [Query.orderAsc('$createdAt'), Query.limit(5)]
         if(filter && filter !== 'All'){
@@ -103,3 +103,19 @@ export const getProperties = async ({filter, query, limit}:{filter:string, query
         return []
     }
 }
+
+
+
+export async function getPropertyById({ id }: { id: string }) {
+    try {
+      const result = await databases.getDocument(
+        config.databaseId!,
+        config.propertiesCollectionId!,
+        id
+      );
+      return result;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
